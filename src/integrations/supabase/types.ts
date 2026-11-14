@@ -14,6 +14,172 @@ export type Database = {
   }
   public: {
     Tables: {
+      bookmarks: {
+        Row: {
+          created_at: string
+          problem_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          problem_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          problem_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookmarks_problem_id_fkey"
+            columns: ["problem_id"]
+            isOneToOne: false
+            referencedRelation: "problems"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      daily_activity: {
+        Row: {
+          accepted_count: number
+          activity_date: string
+          submission_count: number
+          user_id: string
+        }
+        Insert: {
+          accepted_count?: number
+          activity_date: string
+          submission_count?: number
+          user_id: string
+        }
+        Update: {
+          accepted_count?: number
+          activity_date?: string
+          submission_count?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      problem_topics: {
+        Row: {
+          is_primary: boolean
+          problem_id: string
+          topic_id: string
+        }
+        Insert: {
+          is_primary?: boolean
+          problem_id: string
+          topic_id: string
+        }
+        Update: {
+          is_primary?: boolean
+          problem_id?: string
+          topic_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "problem_topics_problem_id_fkey"
+            columns: ["problem_id"]
+            isOneToOne: false
+            referencedRelation: "problems"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "problem_topics_topic_id_fkey"
+            columns: ["topic_id"]
+            isOneToOne: false
+            referencedRelation: "topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      problems: {
+        Row: {
+          checker_config: Json
+          checker_type: string
+          constraints: string[]
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          difficulty: Database["public"]["Enums"]["problem_difficulty"]
+          id: string
+          input_format: string
+          maximum_score: number
+          memory_limit_mb: number
+          output_format: string
+          primary_topic_id: string | null
+          problem_code: string
+          schema_version: number
+          slug: string
+          statement: string
+          status: Database["public"]["Enums"]["problem_status"]
+          subcategory: string | null
+          test_set_version: number
+          time_limit_ms: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          checker_config?: Json
+          checker_type?: string
+          constraints?: string[]
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          difficulty: Database["public"]["Enums"]["problem_difficulty"]
+          id?: string
+          input_format: string
+          maximum_score?: number
+          memory_limit_mb: number
+          output_format: string
+          primary_topic_id?: string | null
+          problem_code: string
+          schema_version?: number
+          slug: string
+          statement: string
+          status?: Database["public"]["Enums"]["problem_status"]
+          subcategory?: string | null
+          test_set_version?: number
+          time_limit_ms: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          checker_config?: Json
+          checker_type?: string
+          constraints?: string[]
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          difficulty?: Database["public"]["Enums"]["problem_difficulty"]
+          id?: string
+          input_format?: string
+          maximum_score?: number
+          memory_limit_mb?: number
+          output_format?: string
+          primary_topic_id?: string | null
+          problem_code?: string
+          schema_version?: number
+          slug?: string
+          statement?: string
+          status?: Database["public"]["Enums"]["problem_status"]
+          subcategory?: string | null
+          test_set_version?: number
+          time_limit_ms?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "problems_primary_topic_id_fkey"
+            columns: ["primary_topic_id"]
+            isOneToOne: false
+            referencedRelation: "topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           created_at: string
@@ -34,6 +200,168 @@ export type Database = {
           username?: string
         }
         Relationships: []
+      }
+      public_test_cases: {
+        Row: {
+          display_order: number
+          expected_output: string
+          explanation: string | null
+          id: string
+          input: string
+          problem_id: string
+        }
+        Insert: {
+          display_order?: number
+          expected_output: string
+          explanation?: string | null
+          id?: string
+          input: string
+          problem_id: string
+        }
+        Update: {
+          display_order?: number
+          expected_output?: string
+          explanation?: string | null
+          id?: string
+          input?: string
+          problem_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_test_cases_problem_id_fkey"
+            columns: ["problem_id"]
+            isOneToOne: false
+            referencedRelation: "problems"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      submissions: {
+        Row: {
+          created_at: string
+          execution_time_ms: number | null
+          failed_tests: number | null
+          finished_at: string | null
+          first_failure_type: string | null
+          id: string
+          language: string
+          memory_kb: number | null
+          passed_tests: number | null
+          problem_id: string
+          score: number | null
+          source_code: string
+          status: Database["public"]["Enums"]["submission_status"]
+          test_set_version: number
+          total_tests: number | null
+          user_id: string
+          verdict: string | null
+        }
+        Insert: {
+          created_at?: string
+          execution_time_ms?: number | null
+          failed_tests?: number | null
+          finished_at?: string | null
+          first_failure_type?: string | null
+          id?: string
+          language: string
+          memory_kb?: number | null
+          passed_tests?: number | null
+          problem_id: string
+          score?: number | null
+          source_code: string
+          status?: Database["public"]["Enums"]["submission_status"]
+          test_set_version?: number
+          total_tests?: number | null
+          user_id: string
+          verdict?: string | null
+        }
+        Update: {
+          created_at?: string
+          execution_time_ms?: number | null
+          failed_tests?: number | null
+          finished_at?: string | null
+          first_failure_type?: string | null
+          id?: string
+          language?: string
+          memory_kb?: number | null
+          passed_tests?: number | null
+          problem_id?: string
+          score?: number | null
+          source_code?: string
+          status?: Database["public"]["Enums"]["submission_status"]
+          test_set_version?: number
+          total_tests?: number | null
+          user_id?: string
+          verdict?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "submissions_problem_id_fkey"
+            columns: ["problem_id"]
+            isOneToOne: false
+            referencedRelation: "problems"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      topics: {
+        Row: {
+          category: string
+          created_at: string
+          id: string
+          name: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          id?: string
+          name: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      user_problem_progress: {
+        Row: {
+          best_score: number
+          last_submission_at: string | null
+          problem_id: string
+          solved_at: string | null
+          solved_test_set_version: number | null
+          status: Database["public"]["Enums"]["problem_progress_status"]
+          user_id: string
+        }
+        Insert: {
+          best_score?: number
+          last_submission_at?: string | null
+          problem_id: string
+          solved_at?: string | null
+          solved_test_set_version?: number | null
+          status?: Database["public"]["Enums"]["problem_progress_status"]
+          user_id: string
+        }
+        Update: {
+          best_score?: number
+          last_submission_at?: string | null
+          problem_id?: string
+          solved_at?: string | null
+          solved_test_set_version?: number | null
+          status?: Database["public"]["Enums"]["problem_progress_status"]
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_problem_progress_problem_id_fkey"
+            columns: ["problem_id"]
+            isOneToOne: false
+            referencedRelation: "problems"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_roles: {
         Row: {
@@ -58,10 +386,20 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
       app_role: "admin" | "user"
+      problem_difficulty: "easy" | "medium" | "hard" | "very_hard"
+      problem_progress_status: "attempted" | "solved"
+      problem_status: "draft" | "published" | "archived"
+      submission_status: "queued" | "running" | "done" | "system_error"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -190,6 +528,10 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "user"],
+      problem_difficulty: ["easy", "medium", "hard", "very_hard"],
+      problem_progress_status: ["attempted", "solved"],
+      problem_status: ["draft", "published", "archived"],
+      submission_status: ["queued", "running", "done", "system_error"],
     },
   },
 } as const
