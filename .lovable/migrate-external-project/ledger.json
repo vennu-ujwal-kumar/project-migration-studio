@@ -1,0 +1,104 @@
+{
+  "source": "code-archive",
+  "project": "CYC Code Practice",
+  "capabilities": [
+    {
+      "capability": "application code and routes",
+      "source": "TanStack Start archive and README scope",
+      "outcome": "migrate",
+      "status": "implemented",
+      "next_action": "Public auth screens, signup mode, and signed-out private-route redirects were checked in the preview; signed-in flow awaits an account to verify."
+    },
+    {
+      "capability": "database schema",
+      "source": "Drizzle SQL migration: profiles and user_roles",
+      "outcome": "migrate",
+      "status": "implemented",
+      "next_action": "Tables and role defaults are present in Lovable Cloud; user records are still pending export."
+    },
+    {
+      "capability": "application records",
+      "source": "No record export included",
+      "outcome": "migrate",
+      "status": "pending",
+      "next_action": "Request sanitized CSV/JSON exports of profiles and user roles after preview."
+    },
+    {
+      "capability": "authentication identities",
+      "source": "Supabase Auth referenced by source code; no user export included",
+      "outcome": "migrate",
+      "status": "pending",
+      "next_action": "Request user export with original IDs and emails; verify email ownership and first-login setup before linking."
+    },
+    {
+      "capability": "authorization and roles",
+      "source": "Separate app_role/user_roles schema and admin-only navigation described in README",
+      "outcome": "migrate",
+      "status": "implemented_pending_live_verification",
+      "next_action": "Role filtering is covered by tests; a signed-in account is needed to verify database access live."
+    },
+    {
+      "capability": "uploaded file bytes",
+      "source": "No app storage implementation or stored-file export detected",
+      "outcome": "not_detected",
+      "status": "not_applicable",
+      "next_action": "None detected in the supplied source."
+    },
+    {
+      "capability": "external providers",
+      "source": "No payment, analytics, email, or AI provider call sites detected; source auth is replaced",
+      "outcome": "none_detected",
+      "status": "verified",
+      "next_action": "None detected in the supplied source."
+    },
+    {
+      "capability": "code execution and judging",
+      "source": "README requires external Edge Functions documented in docs/API_CONTRACT.md; contract and function code absent from archive",
+      "outcome": "not_recreated",
+      "status": "blocked_missing_source",
+      "next_action": "Provide the API contract and existing execution-service code or its supported public endpoint before this capability can be migrated and verified."
+    },
+    {
+      "capability": "public endpoints and callbacks",
+      "source": "No app API routes or non-auth callbacks detected; provider auth redirects are replaced",
+      "outcome": "replace_auth_callbacks",
+      "status": "implemented",
+      "next_action": "Confirm published auth redirect URLs during cutover."
+    },
+    {
+      "capability": "webhooks",
+      "source": "No webhook handlers detected",
+      "outcome": "none_detected",
+      "status": "not_applicable",
+      "next_action": "None detected in the supplied source."
+    },
+    {
+      "capability": "scheduled jobs",
+      "source": "No schedules detected",
+      "outcome": "none_detected",
+      "status": "not_applicable",
+      "next_action": "None detected in the supplied source."
+    },
+    {
+      "capability": "secrets and credentials",
+      "source": "Archive included an excluded .env; no application-provider secret usage was found",
+      "outcome": "do_not_import",
+      "status": "verified",
+      "next_action": "No source credentials are copied or requested."
+    },
+    {
+      "capability": "production cutover",
+      "source": "Source archive; original auth provider is being replaced",
+      "outcome": "pending",
+      "status": "pending",
+      "next_action": "Review published redirect settings and complete account/data import before cutover."
+    },
+    {
+      "capability": "migration verification",
+      "source": "Preview and Cloud",
+      "outcome": "verify",
+      "status": "partially_verified",
+      "next_action": "Signed-in profile writes and imported-account ownership checks wait for existing account/data exports; no source users or profile rows were attached."
+    }
+  ]
+}

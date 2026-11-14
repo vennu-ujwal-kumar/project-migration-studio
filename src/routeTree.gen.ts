@@ -10,33 +10,228 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as AuthenticatedAdminRouteRouteImport } from './routes/_authenticated/_admin/route'
+import { Route as AuthenticatedBookmarksRouteImport } from './routes/_authenticated/bookmarks'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedProblemsRouteImport } from './routes/_authenticated/problems'
+import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
+import { Route as AuthenticatedSubmissionsRouteImport } from './routes/_authenticated/submissions'
+import { Route as AuthenticatedTopicsRouteImport } from './routes/_authenticated/topics'
+import { Route as AuthenticatedAdminAdminRouteImport } from './routes/_authenticated/_admin/admin'
+import { Route as AuthenticatedAdminAdminImportRouteImport } from './routes/_authenticated/_admin/admin.import'
+import { Route as AuthenticatedAdminAdminQuestionsRouteImport } from './routes/_authenticated/_admin/admin.questions'
+import { Route as AuthenticatedAdminAdminTestCasesRouteImport } from './routes/_authenticated/_admin/admin.test-cases'
+import { Route as AuthenticatedAdminAdminUsersRouteImport } from './routes/_authenticated/_admin/admin.users'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminRouteRoute = AuthenticatedAdminRouteRouteImport.update({
+  id: '/_admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedBookmarksRoute = AuthenticatedBookmarksRouteImport.update({
+  id: '/bookmarks',
+  path: '/bookmarks',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedProblemsRoute = AuthenticatedProblemsRouteImport.update({
+  id: '/problems',
+  path: '/problems',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedSubmissionsRoute =
+  AuthenticatedSubmissionsRouteImport.update({
+    id: '/submissions',
+    path: '/submissions',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedTopicsRoute = AuthenticatedTopicsRouteImport.update({
+  id: '/topics',
+  path: '/topics',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAdminAdminRoute = AuthenticatedAdminAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedAdminRouteRoute,
+} as any)
+const AuthenticatedAdminAdminImportRoute =
+  AuthenticatedAdminAdminImportRouteImport.update({
+    id: '/import',
+    path: '/import',
+    getParentRoute: () => AuthenticatedAdminAdminRoute,
+  } as any)
+const AuthenticatedAdminAdminQuestionsRoute =
+  AuthenticatedAdminAdminQuestionsRouteImport.update({
+    id: '/questions',
+    path: '/questions',
+    getParentRoute: () => AuthenticatedAdminAdminRoute,
+  } as any)
+const AuthenticatedAdminAdminTestCasesRoute =
+  AuthenticatedAdminAdminTestCasesRouteImport.update({
+    id: '/test-cases',
+    path: '/test-cases',
+    getParentRoute: () => AuthenticatedAdminAdminRoute,
+  } as any)
+const AuthenticatedAdminAdminUsersRoute =
+  AuthenticatedAdminAdminUsersRouteImport.update({
+    id: '/users',
+    path: '/users',
+    getParentRoute: () => AuthenticatedAdminAdminRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/bookmarks': typeof AuthenticatedBookmarksRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/problems': typeof AuthenticatedProblemsRoute
+  '/profile': typeof AuthenticatedProfileRoute
+  '/submissions': typeof AuthenticatedSubmissionsRoute
+  '/topics': typeof AuthenticatedTopicsRoute
+  '/admin': typeof AuthenticatedAdminAdminRouteWithChildren
+  '/admin/import': typeof AuthenticatedAdminAdminImportRoute
+  '/admin/questions': typeof AuthenticatedAdminAdminQuestionsRoute
+  '/admin/test-cases': typeof AuthenticatedAdminAdminTestCasesRoute
+  '/admin/users': typeof AuthenticatedAdminAdminUsersRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/bookmarks': typeof AuthenticatedBookmarksRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/problems': typeof AuthenticatedProblemsRoute
+  '/profile': typeof AuthenticatedProfileRoute
+  '/submissions': typeof AuthenticatedSubmissionsRoute
+  '/topics': typeof AuthenticatedTopicsRoute
+  '/admin': typeof AuthenticatedAdminAdminRouteWithChildren
+  '/admin/import': typeof AuthenticatedAdminAdminImportRoute
+  '/admin/questions': typeof AuthenticatedAdminAdminQuestionsRoute
+  '/admin/test-cases': typeof AuthenticatedAdminAdminTestCasesRoute
+  '/admin/users': typeof AuthenticatedAdminAdminUsersRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/_admin': typeof AuthenticatedAdminRouteRouteWithChildren
+  '/_authenticated/bookmarks': typeof AuthenticatedBookmarksRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/problems': typeof AuthenticatedProblemsRoute
+  '/_authenticated/profile': typeof AuthenticatedProfileRoute
+  '/_authenticated/submissions': typeof AuthenticatedSubmissionsRoute
+  '/_authenticated/topics': typeof AuthenticatedTopicsRoute
+  '/_authenticated/_admin/admin': typeof AuthenticatedAdminAdminRouteWithChildren
+  '/_authenticated/_admin/admin/import': typeof AuthenticatedAdminAdminImportRoute
+  '/_authenticated/_admin/admin/questions': typeof AuthenticatedAdminAdminQuestionsRoute
+  '/_authenticated/_admin/admin/test-cases': typeof AuthenticatedAdminAdminTestCasesRoute
+  '/_authenticated/_admin/admin/users': typeof AuthenticatedAdminAdminUsersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/forgot-password'
+    | '/reset-password'
+    | '/bookmarks'
+    | '/dashboard'
+    | '/problems'
+    | '/profile'
+    | '/submissions'
+    | '/topics'
+    | '/admin'
+    | '/admin/import'
+    | '/admin/questions'
+    | '/admin/test-cases'
+    | '/admin/users'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/forgot-password'
+    | '/reset-password'
+    | '/bookmarks'
+    | '/dashboard'
+    | '/problems'
+    | '/profile'
+    | '/submissions'
+    | '/topics'
+    | '/admin'
+    | '/admin/import'
+    | '/admin/questions'
+    | '/admin/test-cases'
+    | '/admin/users'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/forgot-password'
+    | '/reset-password'
+    | '/_authenticated/_admin'
+    | '/_authenticated/bookmarks'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/problems'
+    | '/_authenticated/profile'
+    | '/_authenticated/submissions'
+    | '/_authenticated/topics'
+    | '/_authenticated/_admin/admin'
+    | '/_authenticated/_admin/admin/import'
+    | '/_authenticated/_admin/admin/questions'
+    | '/_authenticated/_admin/admin/test-cases'
+    | '/_authenticated/_admin/admin/users'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +243,186 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/_admin': {
+      id: '/_authenticated/_admin'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedAdminRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/bookmarks': {
+      id: '/_authenticated/bookmarks'
+      path: '/bookmarks'
+      fullPath: '/bookmarks'
+      preLoaderRoute: typeof AuthenticatedBookmarksRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/problems': {
+      id: '/_authenticated/problems'
+      path: '/problems'
+      fullPath: '/problems'
+      preLoaderRoute: typeof AuthenticatedProblemsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/profile': {
+      id: '/_authenticated/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof AuthenticatedProfileRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/submissions': {
+      id: '/_authenticated/submissions'
+      path: '/submissions'
+      fullPath: '/submissions'
+      preLoaderRoute: typeof AuthenticatedSubmissionsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/topics': {
+      id: '/_authenticated/topics'
+      path: '/topics'
+      fullPath: '/topics'
+      preLoaderRoute: typeof AuthenticatedTopicsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/_admin/admin': {
+      id: '/_authenticated/_admin/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminAdminRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/_admin/admin/import': {
+      id: '/_authenticated/_admin/admin/import'
+      path: '/import'
+      fullPath: '/admin/import'
+      preLoaderRoute: typeof AuthenticatedAdminAdminImportRouteImport
+      parentRoute: typeof AuthenticatedAdminAdminRoute
+    }
+    '/_authenticated/_admin/admin/questions': {
+      id: '/_authenticated/_admin/admin/questions'
+      path: '/questions'
+      fullPath: '/admin/questions'
+      preLoaderRoute: typeof AuthenticatedAdminAdminQuestionsRouteImport
+      parentRoute: typeof AuthenticatedAdminAdminRoute
+    }
+    '/_authenticated/_admin/admin/test-cases': {
+      id: '/_authenticated/_admin/admin/test-cases'
+      path: '/test-cases'
+      fullPath: '/admin/test-cases'
+      preLoaderRoute: typeof AuthenticatedAdminAdminTestCasesRouteImport
+      parentRoute: typeof AuthenticatedAdminAdminRoute
+    }
+    '/_authenticated/_admin/admin/users': {
+      id: '/_authenticated/_admin/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AuthenticatedAdminAdminUsersRouteImport
+      parentRoute: typeof AuthenticatedAdminAdminRoute
+    }
   }
 }
 
+interface AuthenticatedAdminAdminRouteChildren {
+  AuthenticatedAdminAdminImportRoute: typeof AuthenticatedAdminAdminImportRoute
+  AuthenticatedAdminAdminQuestionsRoute: typeof AuthenticatedAdminAdminQuestionsRoute
+  AuthenticatedAdminAdminTestCasesRoute: typeof AuthenticatedAdminAdminTestCasesRoute
+  AuthenticatedAdminAdminUsersRoute: typeof AuthenticatedAdminAdminUsersRoute
+}
+
+const AuthenticatedAdminAdminRouteChildren: AuthenticatedAdminAdminRouteChildren =
+  {
+    AuthenticatedAdminAdminImportRoute: AuthenticatedAdminAdminImportRoute,
+    AuthenticatedAdminAdminQuestionsRoute:
+      AuthenticatedAdminAdminQuestionsRoute,
+    AuthenticatedAdminAdminTestCasesRoute:
+      AuthenticatedAdminAdminTestCasesRoute,
+    AuthenticatedAdminAdminUsersRoute: AuthenticatedAdminAdminUsersRoute,
+  }
+
+const AuthenticatedAdminAdminRouteWithChildren =
+  AuthenticatedAdminAdminRoute._addFileChildren(
+    AuthenticatedAdminAdminRouteChildren,
+  )
+
+interface AuthenticatedAdminRouteRouteChildren {
+  AuthenticatedAdminAdminRoute: typeof AuthenticatedAdminAdminRouteWithChildren
+}
+
+const AuthenticatedAdminRouteRouteChildren: AuthenticatedAdminRouteRouteChildren =
+  {
+    AuthenticatedAdminAdminRoute: AuthenticatedAdminAdminRouteWithChildren,
+  }
+
+const AuthenticatedAdminRouteRouteWithChildren =
+  AuthenticatedAdminRouteRoute._addFileChildren(
+    AuthenticatedAdminRouteRouteChildren,
+  )
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRouteRoute: typeof AuthenticatedAdminRouteRouteWithChildren
+  AuthenticatedBookmarksRoute: typeof AuthenticatedBookmarksRoute
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedProblemsRoute: typeof AuthenticatedProblemsRoute
+  AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedSubmissionsRoute: typeof AuthenticatedSubmissionsRoute
+  AuthenticatedTopicsRoute: typeof AuthenticatedTopicsRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRouteRoute: AuthenticatedAdminRouteRouteWithChildren,
+  AuthenticatedBookmarksRoute: AuthenticatedBookmarksRoute,
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedProblemsRoute: AuthenticatedProblemsRoute,
+  AuthenticatedProfileRoute: AuthenticatedProfileRoute,
+  AuthenticatedSubmissionsRoute: AuthenticatedSubmissionsRoute,
+  AuthenticatedTopicsRoute: AuthenticatedTopicsRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
+  ForgotPasswordRoute: ForgotPasswordRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

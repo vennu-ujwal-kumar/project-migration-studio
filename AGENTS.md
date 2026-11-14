@@ -28,3 +28,7 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Application architecture
+
+- Keep signed-in CYC pages under the TanStack `_authenticated` route layout and app roles in the protected `public.user_roles` table, so UI access and database permissions share one server-owned identity boundary.
