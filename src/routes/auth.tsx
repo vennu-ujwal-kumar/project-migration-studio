@@ -1,5 +1,5 @@
 import { useEffect, useState, type FormEvent } from "react";
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { ArrowRight, Check, Code2, Eye, EyeOff, LockKeyhole, Mail, UserRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -149,7 +149,15 @@ function AuthPage() {
             <div className="space-y-2">
               <div className="flex items-center justify-between gap-3">
                 <Label htmlFor="password">Password</Label>
-                {mode === "signin" ? <Link to="/forgot-password" className="text-xs text-primary hover:underline">Forgot password?</Link> : null}
+                {mode === "signin" ? (
+                  <button
+                    type="button"
+                    className="text-xs text-primary hover:underline"
+                    onClick={() => void navigate({ to: "/forgot-password" })}
+                  >
+                    Forgot password?
+                  </button>
+                ) : null}
               </div>
               <div className="relative">
                 <LockKeyhole className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={16} />
